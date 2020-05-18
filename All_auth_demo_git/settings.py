@@ -28,6 +28,17 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTHENTICATION_BACKENDS = (
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -69,7 +87,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'All_auth_demo_git.wsgi.application'
 
+SITE_ID = 1
 
+
+AUTH_USER_MODEL = 'users.User'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
