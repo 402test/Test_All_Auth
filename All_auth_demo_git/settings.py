@@ -141,6 +141,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# EMAIL
+# ------------------------------------------------------------------------------
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+EMAIL_HOST = env('DJANGO_EMAIL_HOST')
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-port
+EMAIL_USE_SSL = env('DJANGO_EMAIL_USE_SSL', default=True)
+EMAIL_PORT = env('DJANGO_EMAIL_PORT', default=465)
+EMAIL_HOST_USER = env('DJANGO_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('DJANGO_EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL')
+
+
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
