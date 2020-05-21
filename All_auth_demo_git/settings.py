@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import environ
+import sys
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+sys.path.insert(0, BASE_DIR)
 
 env = environ.Env(
     # set casting, default value
@@ -58,11 +58,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'sorl.thumbnail',
+    'crispy_forms',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'users'
+    'users',
+
+
 ]
 
 MIDDLEWARE = [
@@ -80,7 +84,7 @@ ROOT_URLCONF = 'All_auth_demo_git.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+          'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,11 +97,15 @@ TEMPLATES = [
     },
 ]
 
+
+
+
 WSGI_APPLICATION = 'All_auth_demo_git.wsgi.application'
 
 SITE_ID = 1
 
-
+LOGIN_REDIRECT_URL = '/accounts/logout'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'
 AUTH_USER_MODEL = 'users.User'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -120,7 +128,7 @@ DATABASES = {
 
 }
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -175,3 +183,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [  os.path.join(BASE_DIR,"static"),
+
+]
+
+MEDIA_URL = '/media/'
